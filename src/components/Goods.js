@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-const GoodsBox = styled.div`
+const Goods = styled.div`
   width:100%;
 `
 
@@ -57,9 +57,9 @@ const NormalPrice = styled.span`
   color: #aaa;
 `
 
-function Goods() {
+function goods() {
   return (
-    <GoodsBox>
+    <Goods>
       <ThumbnailBox>
 
       </ThumbnailBox>
@@ -71,8 +71,8 @@ function Goods() {
         <Rate>35%</Rate>
         <NormalPrice>가격</NormalPrice>
       </Information>
-    </GoodsBox>
+    </Goods>
   )
 }
 
-export default Goods
+export default goods
