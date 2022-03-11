@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import styled from 'styled-components'
 
 import Logo from '../icons/logo-musinsa.svg'
@@ -15,7 +14,7 @@ const HeaderWrap = styled.div`
   background-color: #fff;
 `
 
-function Header(props) {
+function Header() {
 
   return (
     <HeaderWrap>
