@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
 // css
 import './css/productList.scss';
 
 // components
 import Header from './components/Header'
-import GoodsList from './components/GoodsList'
 import FilterButton from './components/FilterButton'
 import FilterLabel from './components/FilterLabel'
+import GoodsList from './components/GoodsList'
+import Util from './components/Util'
 
 function App() {
   return (
@@ -16,6 +18,7 @@ function App() {
       <GoodsList></GoodsList>
       <FilterButton></FilterButton>
       <FilterLabel></FilterLabel>
+      <Util></Util>
     </div>
   );
 }

@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-import Logo from '../icons/logo-musinsa.svg'
+import { ReactComponent as Logo } from '../icons/logo-musinsa.svg';
 
 const HeaderWrap = styled.div`
   display: flex;
@@ -18,11 +18,7 @@ function Header() {
 
   return (
     <HeaderWrap>
-      <img
-        src={Logo}
-        alt="musinsa logo"
-      >
-      </img>
+      <Logo></Logo>
     </HeaderWrap>
   )
 }
