@@ -1,7 +1,13 @@
 import styled from 'styled-components'
 
-const FilterLabel = styled.span`
-  display: inline-block;
+import { ReactComponent as CloseIcon } from '../icons/ic-14-line-close.svg';
+
+const FilterLabel = styled.div`
+  display: grid;
+  grid-auto-flow: column;
+  gap: 0 4px;
+  align-items: center;
+  width: fit-content;
   padding: 4px 10px;
   border-radius: 4px;
   font-size: 12px;
@@ -12,7 +18,13 @@ const FilterLabel = styled.span`
 function filterLabel() {
   return (
     <FilterLabel>
-      스니커즈
+      필터 라벨
+      <CloseIcon
+        onClick={()=>{
+          console.log('닫기')
+        }}
+      >
+      </CloseIcon>
     </FilterLabel>
   )
 }
