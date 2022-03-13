@@ -11,6 +11,16 @@ const ThumbnailBox = styled.div`
   background-color: #ddd;
 `
 
+const Label = styled.span`
+  position: absolute;
+  left: 10px;
+  bottom: -14px;
+  padding: 4px 6px;
+  font-size: 12px;
+  color: #fff;
+  background-color: #18A286;
+`
+
 const Information = styled.div`
   display: grid;
   grid-template-areas: 
@@ -61,7 +71,7 @@ function goods() {
   return (
     <Goods>
       <ThumbnailBox>
-
+        <Label>단독</Label>
       </ThumbnailBox>
 
       <Information>
