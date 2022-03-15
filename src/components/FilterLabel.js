@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 import { ReactComponent as CloseIcon } from '../icons/ic-14-line-close.svg';
 
-const FilterLabel = styled.div`
+const FilterLabelItem = styled.div`
   display: grid;
   grid-auto-flow: column;
   gap: 0 4px;
@@ -15,18 +15,18 @@ const FilterLabel = styled.div`
   background-color: #0078FF;
 `
 
-function filterLabel() {
+function FilterLabel() {
   return (
-    <FilterLabel>
+    <FilterLabelItem>
       필터 라벨
       <CloseIcon
-        onClick={()=>{
+        onClick={() => {
           console.log('닫기')
         }}
       >
       </CloseIcon>
-    </FilterLabel>
+    </FilterLabelItem>
   )
 }
 
-export default filterLabel
+export default FilterLabel

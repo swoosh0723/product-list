@@ -15,7 +15,6 @@ const HeaderWrap = styled.div`
 `
 
 function Header() {
-
   return (
     <HeaderWrap>
       <Logo></Logo>

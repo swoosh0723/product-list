@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-const FilterButtonItem = styled.button`
+const FilterBox = styled.div`
   display: block;
   padding: 7px 15px;
   border: 1px solid #eee;
@@ -8,12 +8,12 @@ const FilterButtonItem = styled.button`
   font-size: 14px;
 `
 
-function FilterButton() {
+function Filter() {
   return (
-    <FilterButtonItem>
+    <FilterBox>
       세일상품
-    </FilterButtonItem>
+    </FilterBox>
   )
 }
 
-export default FilterButton
+export default Filter
