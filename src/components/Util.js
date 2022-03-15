@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-const Util = styled.div`
+const UtilBox = styled.div`
   display: flex;
   align-items: center;
   padding: 0 15px;
@@ -25,13 +25,13 @@ const ViewTypeButton = styled.button`
   font-size: 11px;
 `
 
-function viewType(){
+function viewType() {
   console.log(123)
 }
 
-function util() {
+function Util() {
   return (
-    <Util>
+    <UtilBox>
       <GoodsCount>
         상품<strong>10</strong>개
       </GoodsCount>
@@ -40,8 +40,8 @@ function util() {
       >
         보기 버튼
       </ViewTypeButton>
-    </Util>
+    </UtilBox>
   )
 }
 
-export default util
+export default Util
