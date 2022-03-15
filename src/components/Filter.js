@@ -1,17 +1,39 @@
+import React, { useState } from 'react';
 import styled from 'styled-components'
+
+// components
+import FilterButton from './FilterButton'
+import FilterLabel from './FilterLabel'
 
 const FilterBox = styled.div`
   display: block;
-  padding: 7px 15px;
-  border: 1px solid #eee;
-  border-radius: 18px;
-  font-size: 14px;
+`
+const FilterButtonBox = styled.div`
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: max-content;
+  gap: 0 5px;
+  padding: 10px 7px;
 `
 
 function Filter() {
+  const [filterButtonName, setFilterButtonName] = useState(['세일상품', '단독상품', '품절포함']);
+
   return (
     <FilterBox>
-      세일상품
+      <FilterButtonBox>
+        {
+          filterButtonName.map((item, i) => {
+            return (
+              <FilterButton
+                key={i}
+                filterButtonName={item}
+              >
+              </FilterButton>
+            )
+          })
+        }
+      </FilterButtonBox>
     </FilterBox>
   )
 }

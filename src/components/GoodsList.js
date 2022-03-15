@@ -16,9 +16,7 @@ function GoodsList(props) {
   useEffect(() => {
     axios.get('https://static.msscdn.net/musinsaUI/homework/data/goods0.json')
       .then((result) => {
-
         const goodsAPI = result.data.data.list
-
         const goodsTest = [
           ...goodsAPI
         ]
