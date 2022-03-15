@@ -7,8 +7,18 @@ const Goods = styled.div`
 const ThumbnailBox = styled.div`
   position: relative;
   width: 100%;
-  height: 300px;
-  background-color: #ddd;
+  padding-top: 119%;
+  background-color: #eee;
+`
+
+const Thumbnail = styled.img`
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  z-index: 10;
 `
 
 const Label = styled.span`
@@ -19,6 +29,7 @@ const Label = styled.span`
   font-size: 12px;
   color: #fff;
   background-color: #18A286;
+  z-index: 20;
 `
 
 const Information = styled.div`
@@ -67,10 +78,11 @@ const NormalPrice = styled.span`
   color: #aaa;
 `
 
-function goods() {
+function goods(props) {
   return (
     <Goods>
       <ThumbnailBox>
+        <Thumbnail src={props.goodsData.image}></Thumbnail>
         <Label>단독</Label>
       </ThumbnailBox>
 
