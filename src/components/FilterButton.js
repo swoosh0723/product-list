@@ -14,7 +14,8 @@ function FilterButton(props) {
   return (
     <FilterButtonItem
       filterButtonActive={props.filterButtonActive}
-      onClick={props.filterButtonToogle}
+      onClick={props.filterButton}
+
     >
       {props.filterButtonName}
     </FilterButtonItem>

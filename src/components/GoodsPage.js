@@ -4,6 +4,7 @@ import axios from 'axios';
 import styled from 'styled-components'
 
 // components
+import GoodsFilter from './GoodsFilter'
 import Util from './Util'
 import GoodsList from './GoodsList'
 
@@ -11,13 +12,10 @@ const GoodsPageContents = styled.div`
   display: block;
   width: 100%;
   padding-bottom: 50px;
-
-  ${Util}{
-    background-color:pink;
-  }
 `
 
 function GoodsPage(props) {
+  // Goods
   const [goodsData, setGoodsData] = useState([]);
 
   const goodsCount = goodsData.length;
@@ -37,6 +35,55 @@ function GoodsPage(props) {
       });
   }, []);
 
+  // Filter
+  const [filterValue, setFilterValue] = useState([]);
+
+  function filterButton(value) {
+    return function () {
+      const filterButtonValue = [...filterValue]
+      setFilterValue(filterButtonValue)
+
+
+      // arr = arr.filter(function (item) {
+      //   return item !== value
+      // })
+
+
+      if (filterButtonValue.find(item => item === value)) {
+        filterButtonValue.delete(value)
+      } else {
+        filterButtonValue.push(value)
+      }
+
+      console.log(filterValue)
+    }
+  }
+
+  // Sale
+  function filterSale() {
+    const goodsSale = [...goodsData]
+    const filterGoodsSale = goodsSale.filter(value => value.isSale === true);
+
+    setGoodsData(filterGoodsSale)
+  }
+
+  // Exclusive
+  function filterExclusive() {
+    const goodsExclusive = [...goodsData]
+    const filterGoodsExclusive = goodsExclusive.filter(
+      value => value.isExclusive === true || value.isSoldOut === true
+    );
+
+    setGoodsData(filterGoodsExclusive)
+  }
+
+  // Soldout
+  function filterSoldout() {
+    const goodsSoldout = [...goodsData]
+    const filterGoodsSoldout = goodsSoldout.filter(value => value.isSoldOut === true);
+
+    setGoodsData(filterGoodsSoldout)
+  }
 
   // 뷰타입
   const [viewTypeColumn, setViewTypeColumn] = useState(2);
@@ -50,6 +97,10 @@ function GoodsPage(props) {
 
   return (
     <GoodsPageContents>
+      <GoodsFilter
+        filterButton={filterButton}
+      >
+      </GoodsFilter>
       <Util
         goodsCount={goodsCount}
         viewTypeButton={viewTypeButton}

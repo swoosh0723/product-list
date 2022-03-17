@@ -28,16 +28,19 @@ function GoodsFilter(props) {
   const [filterButton, setFilterButton] = useState([
     {
       id: 1,
+      value: 'isSale',
       name: '세일상품',
       active: false,
     },
     {
       id: 2,
+      value: 'isExclusive',
       name: '단독상품',
       active: false,
     },
     {
       id: 3,
+      value: 'isSoldOut',
       name: '품절포함',
       active: false,
     }
@@ -45,43 +48,15 @@ function GoodsFilter(props) {
 
   const [filterLabelText, setFilterLabelText] = useState([])
 
-  // function filterButtonToogle(id) {
-  //   return function () {
-  //     setFilterButton(
-  //       prev => prev.map(item => item.id === id
-  //         ? { ...item, active: !item.active }
-  //         : item)
-  //     )
-  //   }
-  // }
-
-  // function filterButtonToogle(id) {
-  //   return function () {
-  //     filterButton.map((item, i) => {
-  //       return (
-  //         prev => prev.map(item => item.id === id
-  //           ? console.log(filterButton[i].name)
-  //           : console.log(filterButton[i].name)
-  //         )
-
-  //       )
-  //     })
-  //   }
-  // }
-  function filterButtonToogle() {
-    console.log(123213213)
+  function filterButtonToogle(id) {
+    return function () {
+      setFilterButton(
+        prev => prev.map(item => item.id === id
+          ? { ...item, active: !item.active }
+          : item)
+      )
+    }
   }
-
-  // function filterButtonToogle(id) {
-  //   return function () {
-  //     filterButton.map((item, i) => {
-  //       return (
-  //         console.log(id)
-
-  //       )
-  //     })
-  //   }
-  // }
 
   return (
     <FilterBox>
@@ -95,6 +70,7 @@ function GoodsFilter(props) {
                 filterButtonActive={item.active}
                 // filterButtonToogle={filterButtonToogle(item.id)}
                 filterButtonToogle={filterButtonToogle}
+                filterButton={props.filterButton(item.value)}
               >
               </FilterButton>
             )

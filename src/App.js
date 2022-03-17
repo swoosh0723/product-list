@@ -12,7 +12,6 @@ function App() {
   return (
     <div className="main">
       <Header></Header>
-      <GoodsFilter></GoodsFilter>
       <GoodsPage></GoodsPage>
     </div>
   );
