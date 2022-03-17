@@ -7,21 +7,14 @@ const FilterButtonItem = styled.button`
   border: 1px solid #eee;
   border-radius: 18px;
   font-size: 14px;
-  color: ${({ filterButtonActive }) => filterButtonActive ? '#0078ff' : 'red'};
+  color: ${({ filterButtonActive }) => filterButtonActive ? '#0078ff' : 'black'};
 `
 
 function FilterButton(props) {
-  const [filterButtonActive, setFilterButtonActive] = useState(false)
-
-  function filterButtonToogle() {
-    setFilterButtonActive(!filterButtonActive);
-
-    console.log(filterButtonActive)
-  }
-
   return (
     <FilterButtonItem
-      onClick={filterButtonToogle}
+      filterButtonActive={props.filterButtonActive}
+      onClick={props.filterButtonToogle}
     >
       {props.filterButtonName}
     </FilterButtonItem>

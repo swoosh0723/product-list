@@ -4,6 +4,7 @@ const UtilBox = styled.div`
   display: flex;
   align-items: center;
   padding: 0 15px;
+  margin-bottom: 16px;
 `
 
 const GoodsCount = styled.span`
@@ -25,20 +26,16 @@ const ViewTypeButton = styled.button`
   font-size: 11px;
 `
 
-function viewType() {
-  console.log(123)
-}
-
-function Util() {
+function Util(props) {
   return (
     <UtilBox>
       <GoodsCount>
-        상품<strong>10</strong>개
+        상품<strong>{props.goodsCount}</strong>개
       </GoodsCount>
       <ViewTypeButton
-        onClick={viewType}
+        onClick={props.viewTypeButton}
       >
-        보기 버튼
+        뷰 타입 변경
       </ViewTypeButton>
     </UtilBox>
   )

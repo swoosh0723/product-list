@@ -3,6 +3,7 @@ import { ReactComponent as Soldout } from '../icons/soldout.svg';
 
 const GoodsBox = styled.div`
   width:100%;
+  background-color: $caution
 `
 
 const ThumbnailBox = styled.div`
@@ -109,16 +110,12 @@ const NormalPrice = styled.span`
 `
 
 function Goods(props) {
-  function onError(e) {
-    e.target.src = 'https://image.msscdn.net/musinsaUI/homework/data/img.jpg';
-  }
-
   return (
     <GoodsBox>
       <ThumbnailBox>
         <Thumbnail
           src={props.goodsData.imageUrl}
-          onError={onError}
+          onError={props.onError}
         >
         </Thumbnail>
 
