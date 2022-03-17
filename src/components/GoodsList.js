@@ -1,41 +1,28 @@
-import React, { useState, useEffect } from 'react';
-
-import axios from 'axios';
 import styled from 'styled-components'
 import Goods from './Goods'
 
 const GoodsListBox = styled.div`
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: ${props => props.column};
   gap: 12px 0;
 `
 
 function GoodsList(props) {
-  const [goodsData, setGoodsData] = useState([]);
-
-  useEffect(() => {
-    axios.get('https://static.msscdn.net/musinsaUI/homework/data/goods0.json')
-      .then((result) => {
-        const goodsAPI = result.data.data.list
-        const goodsTest = [
-          ...goodsAPI
-        ]
-
-        setGoodsData(goodsTest)
-      })
-      .catch(() => {
-        console.log('실패임')
-      });
-  }, []);
+  function onError(e) {
+    e.target.src = 'https://image.msscdn.net/musinsaUI/homework/data/img.jpg';
+  }
 
   return (
-    <GoodsListBox>
+    <GoodsListBox
+      column={props.column}
+    >
       {
-        goodsData.map((item, i) => {
+        props.goodsData.map((item, i) => {
           return (
             <Goods
               key={i}
               goodsData={item}
+              onError={onError}
             >
             </Goods>
           )

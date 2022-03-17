@@ -15,10 +15,10 @@ const FilterLabelItem = styled.div`
   background-color: #0078FF;
 `
 
-function FilterLabel() {
+function FilterLabel(props) {
   return (
     <FilterLabelItem>
-      필터 라벨
+      {props.filterLabelText}
       <CloseIcon
         onClick={() => {
           console.log('닫기')

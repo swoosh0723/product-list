@@ -1,8 +1,12 @@
 import styled from 'styled-components'
 import { ReactComponent as Soldout } from '../icons/soldout.svg';
 
+const fontMSS = 'Musinsa, "Apple SD Gothic Neo", Roboto, "Noto Sans KR", sans-serif'
+const fontDefault = '"-apple-system", HelveticaNeue, Roboto, "Noto Sans KR", helvetica, Gulim, sans - serif'
+
 const GoodsBox = styled.div`
   width:100%;
+  font-family: ${fontDefault};
 `
 
 const ThumbnailBox = styled.div`
@@ -31,16 +35,6 @@ const Thumbnail = styled.img`
   object-fit: contain;
   mix-blend-mode: multiply;
   z-index: 10;
-`
-
-const AlternativeImage = styled.img`
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  z-index: 15;
 `
 
 const Label = styled.span`
@@ -89,6 +83,7 @@ const GoodsName = styled.span`
 const Price = styled.strong`
   grid-area: price;
   margin-top: 4px;
+  font-family: ${fontMSS};
   font-size: 16px;
   font-weight: 400;
 `
@@ -96,6 +91,7 @@ const Price = styled.strong`
 const Rate = styled.em`
   grid-area: rate;
   margin-top: 4px;
+  font-family: ${fontMSS};
   font-size: 16px;
   font-style: normal;
   color: #f00;
@@ -103,22 +99,19 @@ const Rate = styled.em`
 
 const NormalPrice = styled.span`
   grid-area: normalPrice;
+  font-family: ${fontMSS};
   font-size: 11px;
   text-decoration: line-through;
   color: #aaa;
 `
 
 function Goods(props) {
-  function onError(e) {
-    e.target.src = 'https://image.msscdn.net/musinsaUI/homework/data/img.jpg';
-  }
-
   return (
     <GoodsBox>
       <ThumbnailBox>
         <Thumbnail
           src={props.goodsData.imageUrl}
-          onError={onError}
+          onError={props.onError}
         >
         </Thumbnail>
 
