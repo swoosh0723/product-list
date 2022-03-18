@@ -25,52 +25,29 @@ const FilterLabelBox = styled.div`
 `
 
 function GoodsFilter(props) {
-  const [filterButton, setFilterButton] = useState([
-    {
-      id: 1,
-      value: 'isSale',
-      name: '세일상품',
-      active: false,
-    },
-    {
-      id: 2,
-      value: 'isExclusive',
-      name: '단독상품',
-      active: false,
-    },
-    {
-      id: 3,
-      value: 'isSoldOut',
-      name: '품절포함',
-      active: false,
-    }
-  ]);
-
-  const [filterLabelText, setFilterLabelText] = useState([])
-
-  function filterButtonToogle(id) {
-    return function () {
-      setFilterButton(
-        prev => prev.map(item => item.id === id
-          ? { ...item, active: !item.active }
-          : item)
-      )
-    }
-  }
+  // function filterButtonToogle(id) {
+  //   return function () {
+  //     setFilterButton(
+  //       prev => prev.map(item => item.id === id
+  //         ? { ...item, active: !item.active }
+  //         : item)
+  //     )
+  //   }
+  // }
 
   return (
     <FilterBox>
       <FilterButtonBox>
         {
-          filterButton.map((item, i) => {
+          props.filterButtonData.map((item, i) => {
             return (
               <FilterButton
                 key={i}
                 filterButtonName={item.name}
                 filterButtonActive={item.active}
                 // filterButtonToogle={filterButtonToogle(item.id)}
-                filterButtonToogle={filterButtonToogle}
-                filterButton={props.filterButton(item.value)}
+                // filterButtonToogle={filterButtonToogle}
+                filterButton={props.filterButton(item.value, item.name)}
               >
               </FilterButton>
             )
@@ -78,16 +55,16 @@ function GoodsFilter(props) {
         }
       </FilterButtonBox>
       {
-        filterLabelText.length === 0
+        props.filterName.length === 0
           ? null
           :
           <FilterLabelBox>
             {
-              filterLabelText.map((item, i) => {
+              props.filterName.map((item, i) => {
                 return (
                   <FilterLabel
                     key={i}
-                    filterLabelText={filterLabelText}
+                    filterName={item}
                   >
                   </FilterLabel>
                 )
