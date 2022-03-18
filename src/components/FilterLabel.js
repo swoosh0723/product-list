@@ -18,7 +18,7 @@ const FilterLabelItem = styled.div`
 function FilterLabel(props) {
   return (
     <FilterLabelItem>
-      {props.filterLabelText}
+      {props.filterName}
       <CloseIcon
         onClick={() => {
           console.log('닫기')

@@ -8,6 +8,9 @@ import GoodsFilter from './GoodsFilter'
 import Util from './Util'
 import GoodsList from './GoodsList'
 
+// data
+import filterData from '../data/filterData.json'
+
 const GoodsPageContents = styled.div`
   display: block;
   width: 100%;
@@ -17,7 +20,6 @@ const GoodsPageContents = styled.div`
 function GoodsPage(props) {
   // Goods
   const [goodsData, setGoodsData] = useState([]);
-
   const goodsCount = goodsData.length;
 
   useEffect(() => {
@@ -35,27 +37,48 @@ function GoodsPage(props) {
       });
   }, []);
 
-  // Filter
+  // Filter, Label
+  const [filterButtonData, setFilterButtonData] = useState(filterData);
   const [filterValue, setFilterValue] = useState([]);
+  const [filterName, setFilterName] = useState([])
 
-  function filterButton(value) {
+  function filterButton(value, name, active) {
     return function () {
       const filterButtonValue = [...filterValue]
-      setFilterValue(filterButtonValue)
+      const filterButtonName = [...filterName]
+
+      // let filtered
+      //   = arr.filter((element) => element !== 'b');
+
+      // if (filterButtonValue.filter(item => item !== value)) {
+      //   setFilterValue(filterButtonValue)
+      //   setFilterName(filterButtonName)
+      // } else {
+      //   filterButtonValue.push(value)
+      //   filterButtonName.push(name)
+
+      //   setFilterValue(filterButtonValue)
+      //   setFilterName(filterButtonName)
+      // }
+
+      const test1 = filterButtonValue.filter(item => item !== value);
+
+      setFilterValue(test1)
 
 
-      // arr = arr.filter(function (item) {
-      //   return item !== value
-      // })
 
+      // if (filterButtonValue.find(item => item !== value)) {
+      //   filterButtonValue.push(value)
+      //   filterButtonName.push(name)
 
-      if (filterButtonValue.find(item => item === value)) {
-        filterButtonValue.delete(value)
-      } else {
-        filterButtonValue.push(value)
-      }
+      //   setFilterValue(filterButtonValue)
+      //   setFilterName(filterButtonName)
+      // } else {
+      //   console.log("!!!!!!!!!")
+      // }
 
-      console.log(filterValue)
+      // console.log(filterValue)
+      console.log(filterName)
     }
   }
 
@@ -98,7 +121,9 @@ function GoodsPage(props) {
   return (
     <GoodsPageContents>
       <GoodsFilter
+        filterButtonData={filterButtonData}
         filterButton={filterButton}
+        filterName={filterName}
       >
       </GoodsFilter>
       <Util

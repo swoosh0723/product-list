@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "value": "isSale",
+    "name": "세일상품",
+    "active": false
+  },
+  {
+    "id": 2,
+    "value": "isExclusive",
+    "name": "단독상품",
+    "active": false
+  },
+  {
+    "id": 3,
+    "value": "isSoldOut",
+    "name": "품절포함",
+    "active": false
+  }
+]
