@@ -42,25 +42,6 @@ function GoodsPage(props) {
   const [filterValue, setFilterValue] = useState([]);
   const [filterName, setFilterName] = useState([])
 
-  function filterButton(value, name, active) {
-    return function () {
-      const filterButtonValue = [...filterValue]
-      const filterButtonName = [...filterName]
-
-      if (filterButtonValue.find(item => item === value || item === name)) {
-
-      } else {
-        filterButtonValue.push(value)
-        filterButtonName.push(name)
-
-        setFilterValue(filterButtonValue)
-        setFilterName(filterButtonName)
-      }
-
-      console.log(filterButtonName);
-    }
-  }
-
   // Sale
   function filterSale() {
     const goodsSale = [...goodsData]
@@ -85,6 +66,25 @@ function GoodsPage(props) {
     const filterGoodsSoldout = goodsSoldout.filter(value => value.isSoldOut === true);
 
     setGoodsData(filterGoodsSoldout)
+  }
+
+  function filterButton(value, name, active) {
+    return function () {
+      const filterButtonValue = [...filterValue]
+      const filterButtonName = [...filterName]
+
+      if (filterButtonValue.find(item => item === value || item === name)) {
+
+      } else {
+        filterButtonValue.push(value)
+        filterButtonName.push(name)
+
+        setFilterValue(filterButtonValue)
+        setFilterName(filterButtonName)
+      }
+
+      console.log(filterButtonName);
+    }
   }
 
   // 뷰타입
