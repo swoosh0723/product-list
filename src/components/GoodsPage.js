@@ -23,15 +23,23 @@ function GoodsPage(props) {
   const goodsCount = goodsData.length;
 
   useEffect(() => {
-    axios.get('https://static.msscdn.net/musinsaUI/homework/data/goods0.json')
-      .then((result) => {
-        const goodsAPI_LIST = result.data.data.list
-        const goodsAPI_DATA = [
-          ...goodsAPI_LIST
-        ]
+    axios
+      .all([
+        axios.get('https://static.msscdn.net/musinsaUI/homework/data/goods0.json'),
+        axios.get('https://static.msscdn.net/musinsaUI/homework/data/goods1.json'),
+      ])
+      .then(
+        axios.spread((result1, result2) => {
+          const goodsAPI_LIST1 = result1.data.data.list
+          const goodsAPI_LIST2 = result2.data.data.list
+          const goodsAPI_DATA = [
+            ...goodsAPI_LIST1,
+            ...goodsAPI_LIST2
+          ]
 
-        setGoodsData(goodsAPI_DATA)
-      })
+          setGoodsData(goodsAPI_DATA)
+        })
+      )
       .catch(() => {
         console.log('실패임')
       });
