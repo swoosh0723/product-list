@@ -72,18 +72,37 @@ function GoodsPage(props) {
     return function () {
       const filterButtonValue = [...filterValue]
       const filterButtonName = [...filterName]
+      
+      filterButtonName.indexOf(name) > -1 
+        ? setFilterName(filterButtonName.filter((item) => item !== name)) 
+        : setFilterName([...filterButtonName, name])
 
-      if (filterButtonValue.find(item => item === value || item === name)) {
+      filterButtonValue.indexOf(value) > -1 
+        ? setFilterValue(filterButtonValue.filter((item) => item !== value)) 
+        : setFilterValue([...filterButtonValue, value])
+        
+        console.log(filterButtonName)
+        console.log(filterButtonValue)
 
-      } else {
-        filterButtonValue.push(value)
-        filterButtonName.push(name)
+      // if (filterButtonValue.find(item => item === value || item === name)) {
+      //   // var myArray = ['one', 'two', 'three'];
+      //   // var newArray = myArray.filter(function(f) { 
+      //   //   return f !== 'two' 
+      //   // })
+      //   // console.log(newArray)
 
-        setFilterValue(filterButtonValue)
-        setFilterName(filterButtonName)
-      }
+      //   const filterButtonNameDelete = filterButtonName.filter((v, i) => filterButtonName.indexOf(v) !== i);
+      //   setFilterName(filterButtonNameDelete);
 
-      console.log(filterButtonName);
+      //   console.log(filterButtonName)
+      // } else {
+      //   filterButtonValue.push(value);
+      //   filterButtonName.push(name);
+
+      //   setFilterValue(filterButtonValue);
+      //   setFilterName(filterButtonName);
+      // }
+
     }
   }
 
