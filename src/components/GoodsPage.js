@@ -65,8 +65,6 @@ function GoodsPage(props) {
     })
   }
 
-  // console.log(filter)
-
   return (
     <GoodsPageContents>
       <div>
