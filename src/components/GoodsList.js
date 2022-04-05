@@ -3,7 +3,7 @@ import Goods from './Goods'
 
 const GoodsListBox = styled.div`
   display: grid;
-  grid-template-columns: ${props => props.column};
+  grid-template-columns: repeat(2, 1fr);
   gap: 12px 0;
 `
 
@@ -13,9 +13,7 @@ function GoodsList(props) {
   }
 
   return (
-    <GoodsListBox
-      column={props.column}
-    >
+    <GoodsListBox>
       {
         props.goodsData.map((item, i) => {
           return (

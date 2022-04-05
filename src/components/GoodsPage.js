@@ -19,8 +19,9 @@ const GoodsPageContents = styled.div`
 
 function GoodsPage(props) {
   // Goods
-  const [goodsData, setGoodsData] = useState([]);
-  const goodsCount = goodsData.length;
+  const [originData, setOriginData] = useState([]);
+  const [goodsListData, setGoodsListData] = useState([]);
+  const [filter, setFilter] = useState(filterData);
 
   useEffect(() => {
     axios
@@ -37,7 +38,8 @@ function GoodsPage(props) {
             ...goodsAPI_LIST2
           ]
 
-          setGoodsData(goodsAPI_DATA)
+          setOriginData(goodsAPI_DATA)
+          setGoodsListData(goodsAPI_DATA)
         })
       )
       .catch(() => {
@@ -45,100 +47,70 @@ function GoodsPage(props) {
       });
   }, []);
 
-  // Filter, Label
-  const [filterButtonData, setFilterButtonData] = useState(filterData);
-  const [filterValue, setFilterValue] = useState([]);
-  const [filterName, setFilterName] = useState([])
+  console.log(filter)
 
-  // Sale
-  function filterSale() {
-    const goodsSale = [...goodsData]
-    const filterGoodsSale = goodsSale.filter(value => value.isSale === true);
+  const handleClickFilterButton = (value) => {
+    setFilter((currValue) => {
+      return currValue.reduce((acc, cur) => {
+        if (cur.value === value) {
+          acc.push({
+            ...cur, active: !cur.active
+          });
+        } else {
+          acc.push(cur);
+        }
 
-    setGoodsData(filterGoodsSale)
+        return acc
+      }, [])
+    })
   }
 
-  // Exclusive
-  function filterExclusive() {
-    const goodsExclusive = [...goodsData]
-    const filterGoodsExclusive = goodsExclusive.filter(
-      value => value.isExclusive === true || value.isSoldOut === true
-    );
-
-    setGoodsData(filterGoodsExclusive)
-  }
-
-  // Soldout
-  function filterSoldout() {
-    const goodsSoldout = [...goodsData]
-    const filterGoodsSoldout = goodsSoldout.filter(value => value.isSoldOut === true);
-
-    setGoodsData(filterGoodsSoldout)
-  }
-
-  function filterButton(value, name, active) {
-    return function () {
-      const filterButtonValue = [...filterValue]
-      const filterButtonName = [...filterName]
-      
-      filterButtonName.indexOf(name) > -1 
-        ? setFilterName(filterButtonName.filter((item) => item !== name)) 
-        : setFilterName([...filterButtonName, name])
-
-      filterButtonValue.indexOf(value) > -1 
-        ? setFilterValue(filterButtonValue.filter((item) => item !== value)) 
-        : setFilterValue([...filterButtonValue, value])
-        
-        console.log(filterButtonName)
-        console.log(filterButtonValue)
-
-      // if (filterButtonValue.find(item => item === value || item === name)) {
-      //   // var myArray = ['one', 'two', 'three'];
-      //   // var newArray = myArray.filter(function(f) { 
-      //   //   return f !== 'two' 
-      //   // })
-      //   // console.log(newArray)
-
-      //   const filterButtonNameDelete = filterButtonName.filter((v, i) => filterButtonName.indexOf(v) !== i);
-      //   setFilterName(filterButtonNameDelete);
-
-      //   console.log(filterButtonName)
-      // } else {
-      //   filterButtonValue.push(value);
-      //   filterButtonName.push(name);
-
-      //   setFilterValue(filterButtonValue);
-      //   setFilterName(filterButtonName);
-      // }
-
-    }
-  }
-
-  // 뷰타입
-  const [viewTypeColumn, setViewTypeColumn] = useState(2);
-  const column = 'repeat(' + viewTypeColumn + ', 1fr)';
-
-  function viewTypeButton() {
-    viewTypeColumn === 3
-      ? setViewTypeColumn(1)
-      : setViewTypeColumn(viewTypeColumn + 1);
-  }
+  // console.log(filter)
 
   return (
     <GoodsPageContents>
-      <GoodsFilter
-        filterButtonData={filterButtonData}
-        filterButton={filterButton}
-        filterName={filterName}
-      >
-      </GoodsFilter>
+      <div>
+        {
+          filter.map(({ id, value, name, active }, i) => {
+            return (
+              <GoodsFilter
+                key={i}
+                id={id}
+                value={value}
+                name={name}
+                active={active}
+                handleClickFilterButton={handleClickFilterButton}
+              />
+            )
+          })
+        }
+      </div>
+
+      <div>
+        {
+          filter.map((item, i) => {
+            if (!item.active) {
+              return null
+            }
+
+            return (
+              <span
+                key={i}
+                onClick={() => handleClickFilterButton(item.value)}
+              >
+                {item.name}
+              </span>
+            )
+          })
+        }
+      </div>
+
+
       <Util
-        goodsCount={goodsCount}
-        viewTypeButton={viewTypeButton}
       ></Util>
+
       <GoodsList
-        goodsData={goodsData}
-        column={column}
+        goodsData={goodsListData}
       ></GoodsList>
     </GoodsPageContents>
   )

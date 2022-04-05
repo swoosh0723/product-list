@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import styled from 'styled-components'
 
 // components
-import FilterButton from './FilterButton'
 import FilterLabel from './FilterLabel'
 
 const FilterBox = styled.div`
@@ -24,7 +23,16 @@ const FilterLabelBox = styled.div`
   padding: 12px 15px;
 `
 
-function GoodsFilter(props) {
+const FilterButtonItem = styled.button`
+  display: block;
+  padding: 7px 15px;
+  border: 1px solid #eee;
+  border-radius: 18px;
+  font-size: 14px;
+  color: ${({ active }) => active ? '#0078ff' : 'black'};
+`
+
+function GoodsFilter({ id, value, name, active, handleClickFilterButton }) {
   // function filterButtonToogle(id) {
   //   return function () {
   //     setFilterButton(
@@ -36,43 +44,12 @@ function GoodsFilter(props) {
   // }
 
   return (
-    <FilterBox>
-      <FilterButtonBox>
-        {
-          props.filterButtonData.map((item, i) => {
-            return (
-              <FilterButton
-                key={i}
-                filterButtonName={item.name}
-                filterButtonActive={item.active}
-                // filterButtonToogle={filterButtonToogle(item.id)}
-                // filterButtonToogle={filterButtonToogle}
-                filterButton={props.filterButton(item.value, item.name)}
-              >
-              </FilterButton>
-            )
-          })
-        }
-      </FilterButtonBox>
-      {
-        props.filterName.length === 0
-          ? null
-          :
-          <FilterLabelBox>
-            {
-              props.filterName.map((item, i) => {
-                return (
-                  <FilterLabel
-                    key={i}
-                    filterName={item}
-                  >
-                  </FilterLabel>
-                )
-              })
-            }
-          </FilterLabelBox>
-      }
-    </FilterBox>
+    <FilterButtonItem
+      onClick={() => handleClickFilterButton(value)}
+      active={active}
+    >
+      {name}
+    </FilterButtonItem>
   )
 }
 
